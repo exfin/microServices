@@ -1,0 +1,24 @@
+services:
+  api-getaway:
+    build: ./socialclub
+    ports:
+      - "3000:3000"
+    volumes: 
+      - ./socialclub/src:/usr/src/app/src
+    command: npm run start:dev
+    environment: 
+      - PORT=3000
+  booking-microservice:
+    build: ./booking-microservice
+    volumes: 
+      - ./booking-microservice/src:/usr/src/app/src
+    command: npm run start:dev
+  liquor-microservice:
+    build: ./liquor-microservice
+    volumes: 
+      - ./liquor-microservice/src:/usr/src/app/src
+    command: npm run start:dev
+  nats: 
+    image: nats
+    ports:
+      - 4222:4222
